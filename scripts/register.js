@@ -10,28 +10,80 @@ let salon = {
         open:"9:00 am",
         close:"8:00 pm"
     },
-    pets:[
-        {
-            name:"Scooby",
-            age: 70
-        },
-        {
-            name:"Scrappy",
-            age: 60
-        }
-    ]
+    pets:[] //array
 }
 
-//creating the function
-function displayInfo() {
-    document.getElementById("pets").innerHTML=`Welcome to ${salon.name} .... close at ${salon.hours.close}`;
+//object constructor
+function Pet(name,age,gender,breed,service,type) {
+    this.petName=name;
+    this.petAge=age;
+    this.petGender=gender;
+    this.petBreed=breed;
+    this.petService=service;
+    this.petType=type;
 }
 
-displayInfo();
+//Global variables (want access to them to be able to clear them)
+let inputName = document.getElementById("txtName");
+let inputAge = document.getElementById("txtAge");
+let inputGender = document.getElementById("txtGender");
+let inputBreed = document.getElementById("txtBreed");
+let inputService = document.getElementById("txtService");
+let inputType = document.getElementById("txtType");
 
-function displayPetNames() {
-    console.log(salon.pets[0].name);
-    console.log(salon.pets[1].name);
+function isValid(aPet) {
+    let validation = true; // assuming everying  is valid
+    if (aPet.petName =="") {
+        //if i get here it's not valid
+        validation = false;
+        inputName.classList.add("error");
+    }
+    if (aPet.petService =="") {
+        //if i get here it's not valid
+        validation = false;
+        inputService.classList.add("error");
+    }
+
+
+    return validation;
 }
 
-displayPetNames();
+function register() {
+    console.log("Registering...");
+    //get the values from the form
+
+    //create the newPet object
+    let newPet = new Pet(
+        inputName.value,
+        inputAge.value, 
+        inputGender.value, 
+        inputBreed.value,
+        inputService.value,
+        inputType.value);
+
+    if (isValid(newPet)==true) {
+        salon.pets.push(newPet); //pushes the newPet into the array
+        displayCards();
+        //display on the console
+        clearInput();
+    }        
+}
+
+function clearInput() {
+    inputName.value="";
+    inputAge.value="";
+    inputGender.value="";
+    inputBreed.value="";
+    inputService.value="";
+    inputType.value="";
+}
+
+function init() {
+    let scooby = new Pet("Scooby",70,"Male","Dane","Nail Trim","Dog");//creating the object
+    let scrappy = new Pet("Scrappy",70,"Male","Mixed", "Grooming","Dog");
+
+    salon.pets.push(scooby, scrappy);
+    displayCards();
+}
+window.onload = init;//wait to render the html to execute init
+
