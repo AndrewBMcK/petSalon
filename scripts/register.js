@@ -13,6 +13,7 @@ let salon = {
     pets:[] //array
 }
 
+let counter = 0;
 //object constructor
 function Pet(name,age,gender,breed,service,type) {
     this.petName=name;
@@ -21,6 +22,7 @@ function Pet(name,age,gender,breed,service,type) {
     this.petBreed=breed;
     this.petService=service;
     this.petType=type;
+    this.petID=counter++;
 }
 
 //Global variables (want access to them to be able to clear them)
@@ -33,6 +35,11 @@ let inputType = document.getElementById("txtType");
 
 function isValid(aPet) {
     let validation = true; // assuming everying  is valid
+
+    //remove the error style
+    inputName.classList.remove("error");
+    inputService.classList.remove("error");
+
     if (aPet.petName =="") {
         //if i get here it's not valid
         validation = false;
@@ -63,7 +70,8 @@ function register() {
 
     if (isValid(newPet)==true) {
         salon.pets.push(newPet); //pushes the newPet into the array
-        displayCards();
+        displayTable();
+        //displayCards();
         //display on the console
         clearInput();
     }        
@@ -78,12 +86,31 @@ function clearInput() {
     inputType.value="";
 }
 
+function deletePet(ID) {
+    console.log("Deleting pet" + ID);
+    let deleteIndex;
+    //remove from the HTML
+    document.getElementById(ID).remove();
+    //remove from the array
+    for(let i=0; i<salon.pets.length;i++){
+        let pet=salon.pets[i];
+        if(pet.petID==ID){
+            deleteIndex=i;
+        }
+    }
+
+    salon.pets.splice(deleteIndex,1);
+    //displayCards();
+    displayTable();
+}
+
 function init() {
     let scooby = new Pet("Scooby",70,"Male","Dane","Nail Trim","Dog");//creating the object
     let scrappy = new Pet("Scrappy",70,"Male","Mixed", "Grooming","Dog");
 
     salon.pets.push(scooby, scrappy);
-    displayCards();
+    //displayCards();
+    displayTable();
 }
 window.onload = init;//wait to render the html to execute init
 
