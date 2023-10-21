@@ -73,12 +73,6 @@ main h3 {
     background-color: rgb(240, 109, 109)
 }
 
-#pets {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    column-gap: 10px;
-}
-
 .pet {
     border: 1px solid black;
     background-color: #dedede;

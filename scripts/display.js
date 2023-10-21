@@ -41,20 +41,18 @@ function displayTable() {
         let pet = salon.pets[i];
     // tr=``
     tr+=`
-        <tbody id="${pet.petID}" class="pet">
-            <tr>
-                <td>Name: ${pet.petName}</td>
-                <td>Age: ${pet.petAge}</td>
-                <td>Gender: ${pet.petGender}</td>
-                <td>Breed: ${pet.petBreed}</td>
-                <td>Service: ${pet.petService}</td>
-                <td>Type: ${pet.petType}</td>
-            </tr>
-            <button class="btn btn-danger" onclick="deletePet(${pet.petID})">Delete</button>
-        </tbody>
+        <tr id="${pet.petID}">
+            <td>${pet.petName}</td>
+            <td>${pet.petAge}</td>
+            <td>${pet.petGender}</td>
+            <td>${pet.petBreed}</td>
+            <td>${pet.petService}</td>
+            <td>${pet.petType}</td>
+            <td><button class="btn btn-danger" onclick="deletePet(${pet.petID})">Delete</button></td>
+        </tr>
         `;
     }
     // insert the card into the register.html
-    
+    TBODY.innerHTML = tr;
     getTotal();
 }
