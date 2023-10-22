@@ -64,9 +64,14 @@
                     <option value="bird">Bird</option>
                     <option value="snake">Snake</option>
                     <option value="spider">Spider</option>
-
                 </select>
             </div>
+
+            <div class="mb-3">
+                <label class="form-label">Desired appointment :</label>
+                <input type="datetime-local" class="form-control" id="txtDate" placeholder="Desired appointment">
+            </div>
+
             <button class="btn btn-primary" onclick="register()">Register Pet</button>
         </div>
         
@@ -82,7 +87,7 @@
                 <th>Breed</th>
                 <th>Service</th>
                 <th>Type</th>
-                <th></th>
+                <th>Next Appointment</th>
             </thead>
             <tbody id="pets">
                 

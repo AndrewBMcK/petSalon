@@ -48,6 +48,7 @@ function displayTable() {
             <td>${pet.petBreed}</td>
             <td>${pet.petService}</td>
             <td>${pet.petType}</td>
+            <td>${pet.petDate}</td>
             <td><button class="btn btn-danger" onclick="deletePet(${pet.petID})">Delete</button></td>
         </tr>
         `;

@@ -15,13 +15,14 @@ let salon = {
 
 let counter = 0;
 //object constructor
-function Pet(name,age,gender,breed,service,type) {
+function Pet(name,age,gender,breed,service,type,date) {
     this.petName=name;
     this.petAge=age;
     this.petGender=gender;
     this.petBreed=breed;
     this.petService=service;
     this.petType=type;
+    this.petDate=date;
     this.petID=counter++;
 }
 
@@ -32,6 +33,7 @@ let inputGender = document.getElementById("txtGender");
 let inputBreed = document.getElementById("txtBreed");
 let inputService = document.getElementById("txtService");
 let inputType = document.getElementById("txtType");
+let inputDate = document.getElementById("txtDate");
 
 function isValid(aPet) {
     let validation = true; // assuming everying  is valid
@@ -66,7 +68,8 @@ function register() {
         inputGender.value, 
         inputBreed.value,
         inputService.value,
-        inputType.value);
+        inputType.value,
+        inputDate.value);
 
     if (isValid(newPet)==true) {
         salon.pets.push(newPet); //pushes the newPet into the array
@@ -84,6 +87,7 @@ function clearInput() {
     inputBreed.value="";
     inputService.value="";
     inputType.value="";
+    inputDate.value="";
 }
 
 function deletePet(ID) {
@@ -105,12 +109,11 @@ function deletePet(ID) {
 }
 
 function init() {
-    let scooby = new Pet("Scooby",70,"Male","Dane","Nail Trim","Dog");//creating the object
-    let scrappy = new Pet("Scrappy",70,"Male","Mixed", "Grooming","Dog");
+    let scooby = new Pet("Scooby",70,"Male","Dane","Nail Trim","Dog", "12/05/2023 11:20 AM");//creating the object
+    let scrappy = new Pet("Scrappy",70,"Male","Mixed", "Grooming","Dog", "11/20/2023 2:00 PM");
 
     salon.pets.push(scooby, scrappy);
     //displayCards();
     displayTable();
 }
 window.onload = init;//wait to render the html to execute init
-
